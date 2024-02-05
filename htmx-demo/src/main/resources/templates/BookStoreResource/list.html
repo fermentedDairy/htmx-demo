@@ -2,13 +2,16 @@
   {#title}Quarkus/htmx • Book Store{/title}
   {#body} 
   <header class="header">
-    <h1>todos</h1>
-    <form action="/bookstores" method="POST" hx-target="#bookstore-list" hx-swap="beforeend">
-        <input name="name" placeholder="Bookstore Name" autofocus>
-        <input name="address" placeholder="5 Nowhere Ave, The Sticks">
-        <input type="submit" value="Submit">
-    </form>
+    <h1>bookstore</h1>
   </header>
+  <section class="main">
+      <form action="/bookstores" method="POST" hx-target="#bookstore-list" hx-swap="beforeend">
+            <input name="name" placeholder="Bookstore Name" autofocus>
+            <input name="address" placeholder="5 Nowhere Ave, The Sticks">
+            <input type="submit" value="Submit">
+        </form>
+  </section>
+  <br/>
   <section class="main">
       <table id="bookstore-list">
         <tr>
