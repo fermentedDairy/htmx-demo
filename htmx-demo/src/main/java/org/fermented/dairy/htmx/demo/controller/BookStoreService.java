@@ -12,13 +12,19 @@ public class BookStoreService {
 
     private static List<BookStore> bookStores = new ArrayList<>();
 
-    public void addBookStore(final BookStore bookStore) {
-        bookStores.add(bookStore);
-        System.out.println(bookStores);
+    public BookStore addBookStore(final BookStore bookStore) {
+        final BookStore toBeAdded = new BookStore(bookStore);
+        toBeAdded.setId(
+                bookStores.stream()
+                        .map(BookStore::getId)
+                        .mapToLong(l -> l)
+                        .max().orElse(0) + 1
+        );
+        bookStores.add(toBeAdded);
+        return toBeAdded;
     }
 
     public List<BookStore> getBooksters() {
-        System.out.println(bookStores);
         return Collections.unmodifiableList(bookStores);
     }
 

@@ -29,9 +29,9 @@ public class BookStoreResource {
 
     @POST
     public Response add(@Form BookStore bookStore, @HeaderParam("HX-Request") boolean hxRequest) {
-        bookstoreService.addBookStore(bookStore);
+        final BookStore addedBookstore = bookstoreService.addBookStore(bookStore);
         if (hxRequest) {
-            return Response.ok(Templates.item(bookStore)).header("HX-Trigger", "clear-add-bookstore").build();
+            return Response.ok(Templates.item(addedBookstore)).header("HX-Trigger", "clear-add-bookstore").build();
         }
         return Response.status(Response.Status.FOUND).header("Location", "/bookstores").build();
     }
