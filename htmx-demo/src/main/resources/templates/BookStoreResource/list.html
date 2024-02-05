@@ -1,0 +1,25 @@
+{#include base}
+  {#title}Quarkus/htmx • Book Store{/title}
+  {#body} 
+  <header class="header">
+    <h1>todos</h1>
+    <form action="/bookstores" method="POST" hx-target="#bookstore-list" hx-swap="beforeend">
+        <input name="name" placeholder="Bookstore Name" autofocus>
+        <input name="address" placeholder="5 Nowhere Ave, The Sticks">
+        <input type="submit" value="Submit">
+    </form>
+  </header>
+  <section class="main">
+      <table id="bookstore-list">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+          {#for bookstore in bookstores}
+            {#include BookStoreResource/item.html bookstore=bookstore /}
+          {/for}
+        </table>
+  </section>
+  <footer class="footer">
+  {/body}
+{/include}
