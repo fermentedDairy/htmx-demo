@@ -13,13 +13,12 @@ public class BookStoreService {
     private static List<BookStore> bookStores = new ArrayList<>();
 
     public BookStore addBookStore(final BookStore bookStore) {
-        final BookStore toBeAdded = new BookStore(bookStore);
-        toBeAdded.setId(
-                bookStores.stream()
+        final BookStore toBeAdded = bookStore.toBuilder()
+                .id(bookStores.stream()
                         .map(BookStore::getId)
                         .mapToLong(l -> l)
-                        .max().orElse(0) + 1
-        );
+                        .max().orElse(0) + 1)
+                .build();
         bookStores.add(toBeAdded);
         return toBeAdded;
     }
